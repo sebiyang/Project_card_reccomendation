@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>ML API</title>
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  
+</head>
+
+<body>
+ <div class="login" style="text-align:center; background:#FBFBEF; ">
+
+  <a href = "https://public.tableau.com/views/kbcard/1_1?:language=ko-KR&publish=yes&:display_count=n&:origin=viz_share_link">대시보드 보러가기</a>
+	<h3>안녕하세요, <span>&#x1F4B3</span><span>&#x2728</span>국민카드<span>&#x2728</span><span>&#x1F4B3</span>입니다. 지금부터 당신에게 꼭 맞는 카드를 추천해 드릴게요</h3>
+  <h5>당신에 대해 조금만 알려주세요</h5>
+
+     <!-- Main Input For Receiving Query to our ML -->
+    <form action="{{ url_for('predict')}}"method="post">
+      <h5>평소 인터넷 쇼핑에 얼마정도 쓰세요?<p>&#x2753</p></h5>
+    	<input type="text" name="sales_sum" placeholder="쇼핑 많이해?" required="required" />
+      <h5>자가를 보유하고 계신가요? 있으면 1, 없으면 0<p>&#x1F3E1</p></h5>
+      <input type="text" name="rented" placeholder="집 있어?" required="required" />
+      <h5>가족 구성원은 몇 명인가요?<p>&#x1F46A</p></h5>
+		  <input type="text" name="family_size" placeholder="가족 몇 명?" required="required" />
+      <h5>아이가 있으신가요?<p>&#x1F37C</p></h5>
+		  <input type="text" name="no_of_children" placeholder="애 있어?" required="required" />
+      <h5>소득 수준이 얼마나 되세요?<p>&#x1F4B0</p></h5>
+      <input type="text" name="income_bracket" placeholder="돈 얼마 벌어?" required="required" />
+      <h5>나이가 어떻게 되세요?<p>&#x1F64F</p></h5>
+      <input type="text" name="age_range" placeholder="몇살이야?" required="required" />
+      <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
+      <h5>당신에게 추천하는 국민카드 는...</h5>
+    </form>
+
+   <br>
+   <br>
+   {{ prediction_text }}
+
+ </div>
+
+
+</body>
+</html>
